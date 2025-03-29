@@ -1,0 +1,17 @@
+{
+  "name": "component-comms",
+  "version": "1.0.0",
+  "description": "Facilitate disconnected components communicating with each other. It allows components to emit events with data and/or watch for events that other components might emit.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --watch",
+    "testwatch": "jest --watchAll"
+  },
+  "keywords": [
+    "pub-sub",
+    "communicate",
+    "events"
+  ],
+  "author": "evanwills",
+  "license": "BSD-2-Clause"
+}
