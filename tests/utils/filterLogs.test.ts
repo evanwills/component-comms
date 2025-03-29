@@ -1,7 +1,7 @@
 /** globals: Deno */
 import { assertEquals } from 'jsr:@std/assert';
 import { filterLogs } from '../../src/utils.ts';
-import type { TLog } from '../../src/comms.d.ts';
+import type { TLog } from '../../types/comms.js';
 
 const getLogs = () : TLog[] => ([
   { time: 1, event: 'set', data: null, ids: [] },

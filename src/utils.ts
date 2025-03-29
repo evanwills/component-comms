@@ -1,4 +1,4 @@
-import type { TLog, TLogBits } from './comms.d.ts';
+import type { TLog, TLogBits } from '../types/comms.js';
 
 /**
  * Check whether the input is a plain JavaScript object.

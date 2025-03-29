@@ -1,6 +1,6 @@
 import { assertEquals } from 'jsr:@std/assert';
 import { getLogBits } from '../../src/utils.ts';
-import type { TLogBits } from '../../src/comms.d.ts';
+import type { TLogBits } from '../../types/comms.js';
 
 Deno.test(
   'getLogBits() returns an object when empty string is supplied',
