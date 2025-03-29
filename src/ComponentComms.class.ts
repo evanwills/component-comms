@@ -1,10 +1,10 @@
 import type {
   FListener,
   TDispatcherMode,
-  TEventWatchers,
+  TEventListeners,
   TLog,
-  TWatcherList,
-} from './comms.d.ts';
+  TListenerList,
+} from '../types/comms.js';
 import {
   getLimitedLogs,
   getLogBits,
@@ -50,7 +50,7 @@ export class ComponentComms {
   // ----------------------------------------------------------------
   // START: Private properties
 
-  private actions : TEventWatchers = {};
+  private actions : TEventListeners = {};
 
   private log : TLog[] = [];
 
@@ -216,20 +216,20 @@ export class ComponentComms {
   }
 
   /**
-   * Add a new watcher function to the list of watcher functions that
-   * are called each time an event is dispatched
+   * Add a new listener function to the list of listener functions
+   * that are called each time an event is dispatched.
    *
    * @function addListener
    *
    * @param {string|string[]} event Type of event that will to
    *                           dispatch
-   * @param {function} watcher Watcher function to be called when an
-   *                           event is dispatched
-   * @param {string}   id      ID of watcher so it can be removed or
+   * @param {function} listener A function to be called when an event
+   *                           is dispatched
+   * @param {string}   id      ID of listener so it can be removed or
    *                           replaced later
    * @param {boolean}  replace Whether or not to replace existing
-   *                           watcher (matched by `id`) with
-   *                           supplied watcher
+   *                           listener (matched by `id`) with
+   *                           supplied listener
    *
    * @returns {void}
    * @throws {Error} If :
@@ -268,14 +268,14 @@ export class ComponentComms {
   }
 
   /**
-   * Remove a known watcher from the list of watchers
+   * Remove a known listener from the list of listener
    *
-   * @param {string}   event   Type of event that will trigger a call
-   *                           to dispatch
-   * @param {string}   id      ID of watcher so it can be removed or
-   *                           replaced later
+   * @param {string} event Type of event that will trigger a call to
+   *                       dispatch
+   * @param {string} id    ID of listener so it can be removed or
+   *                       replaced later
    *
-   * @returns {boolean} TRUE if watcher was found and removed.
+   * @returns {boolean} TRUE if listener was found and removed.
    *                    FALSE otherwise.
    */
   removeListener(event : string, id : string) : boolean {
@@ -283,7 +283,7 @@ export class ComponentComms {
     const _id = normaliseID(id);
 
     if (this.exists(event, _id) === true) {
-      const tmp : TWatcherList = {};
+      const tmp : TListenerList = {};
 
       for (const key of Object.keys(this.actions[_event])) {
         if (key !== _id) {

@@ -60,9 +60,9 @@ export type FDispatch = (event: string, data: any, src?: string) => string[];
  */
 export type FListener = (data: any) => void;
 
-export type TWatcherList = { [key:string] : FListener };
+export type TListenerList = { [key:string] : FListener };
 
-export type TEventWatchers = { [key:string] : TWatcherList };
+export type TEventListeners = { [key:string] : TListenerList };
 
 export type FSetLogging = (logging: boolean) => void;
 
