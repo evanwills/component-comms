@@ -133,7 +133,7 @@ export class ComponentComms {
     const _event = normalise(event);
 
     // eslint-disable-next-line no-console
-    console.groupCollapsed(`Communicator.dispatch("${_event}")${ext}`);
+    console.groupCollapsed(`ComponentComms.dispatch("${_event}")${ext}`);
 
     if (src !== '') {
       console.log('SOURCE:', src); // eslint-disable-line no-console
@@ -300,12 +300,19 @@ export class ComponentComms {
   }
 
   /**
-   * Remove watchers from any event type that has a key matching
+   * Remove listeners from any event type that has a key matching
    * the ID supplied.
    *
-   * @param {string} id
+   * If you are unmounting a component you should remove all
+   * listeners. If you have multiple listeners registered for that
+   * component you may not always remember to remove all listeners.
+   * `removeListenersById()` allows you to remove listeners for
+   * every event associated with the supplied ID.
    *
-   * @returns {number} the number of watchers that were actually
+   * @param {string} id ID of the component that registered the
+   *                    listeners
+   *
+   * @returns {number} The number of listeners that were actually
    *                   removed
    */
   removeListenersById(id : string) : number {
@@ -335,11 +342,12 @@ export class ComponentComms {
   /**
    * Get list of logs
    *
-   * @param event   Type of event that triggered the dispatch call
-   * @param limit   Number of log entries that should be returned
-   *                (Default is 10)
-   * @param newestToOldest Whether or not logs should be returned
-   *                ordered newest to oldest or oldest to newest
+   * @param event     Type of event that triggered the dispatch call
+   * @param limit     Number of log entries that should be returned
+   *                  (Default is 10)
+   * @param lastFirst Whether or not logs should be returned
+   *                  ordered newest to oldest or oldest to newest
+   *
    * @returns list of logs
    */
   getLogs(
